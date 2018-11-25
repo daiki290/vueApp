@@ -5,15 +5,20 @@
         </div>
         <div id="splitDesign">
             <div class="split-box split-left">
-                <SignUp/>
             </div>
             <div class="split-box split-right">
             </div>
         </div>
         <div class="center-logo">
-            <p>IKEMIZU DAIKI</p>
-            <Login v-if="type === 'A'"></Login>
-            <SignUp v-else-if="type === 'B'"></SignUp>
+            <Login v-on:parentMessage="setErrorMsg" v-if="type === 'A'"></Login>
+            <SignUp v-on:parentMessage="setErrorMsg" v-on:nextStep="changeTypeC" v-else-if="type === 'B'"></SignUp>
+            <Confirm v-on:parentMessage="setErrorMsg" v-else-if="type === 'C'"></Confirm>
+            <div class="buttonArea">
+              <button class="btn-border" v-if="type === 'A'" v-on:click="changeTypeC" >INPUT AUTH CODE</button>
+              <button class="btn-border" v-if="type === 'A'" v-on:click="changeTypeB">CREATE ACCOUNT</button>
+              <button class="btn-border" v-if="type !== 'A'" v-on:click="changeTypeA">LOGIN</button>
+            </div>
+            <p>{{errorMsg}}</p>
         </div>
     </div><!--split-->
 </template>
@@ -62,7 +67,7 @@ position: absolute;
 top: 50%;
 left: 50%;
 width: 40vh;
-height: 40vh;
+height: 50vh;
 margin-top: -20vh;
 margin-left: -20vh;
 text-align: center;
@@ -73,7 +78,28 @@ z-index:3;
 .center-logo p {
    font-family: Bodoni serif;
    text-transform: uppercase;
-   text-shadow: #2c2c2c 3px 3px 5px;
+}
+
+/* ボタン*/
+.btn-border {
+  opacity:0.7;
+  display: inline-block;
+  max-width: 150px;
+  text-align: left;
+  border: 2px solid rgba(0,0,0,0.3);
+  font-size: 10px;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: .4s;
+}
+
+.btn-border:hover {
+  background-color: #000;
+  border-color: #000;
+  color: #FFF;
 }
 
 @media screen and (max-width:600px) {
@@ -85,12 +111,38 @@ z-index:3;
 }
 </style>
 <script>
-import Login from './Login.vue'
-import SignUp from './SignUp.vue'
+import Login from '../components/Login.vue'
+import SignUp from '../components/SignUp.vue'
+import Confirm from '../components/Confirm.vue'
 export default {
   components: {
     'Login': Login,
-    'SignUp': SignUp
+    'SignUp': SignUp,
+    'Confirm': Confirm
+  },
+  data () {
+    return {
+      type: 'A',
+      errorMsg: 'test'
+    }
+  },
+  methods: {
+    changeTypeA () {
+      this.type = 'A'
+      this.errorMsg = ''
+    },
+    changeTypeB () {
+      this.type = 'B'
+      this.errorMsg = ''
+    },
+    changeTypeC () {
+      this.type = 'C'
+      this.errorMsg = ''
+    },
+    setErrorMsg (message) {
+      this.errorMsg = message
+    }
   }
 }
+
 </script>

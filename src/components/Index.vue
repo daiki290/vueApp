@@ -1,8 +1,5 @@
 <template>
   <div id="index">
-    <div id="app">
-        <p>{{message}}</p>
-    </div>
     <div class="header">
         <header>
             <h1>IKEMIZU DAIKI</h1>
@@ -21,7 +18,7 @@
         <router-view></router-view>
     </div>
     <footer>
-        <address>Copyright(C)2016 D.IKEMIZU,Allright Reserved.</address>
+        <address>Copyright(C)2018 D.IKEMIZU,Allright Reserved.</address>
     </footer>
   </div>
 </template>

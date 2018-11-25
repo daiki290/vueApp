@@ -1,13 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/components/Login'
-import Home from '@/components/Home'
+import Home from '@/pages/Home'
+import Content from '@/pages/Content'
+import ErrorPage from '@/pages/ErrorPage'
 import Index from '@/components/Index'
-import SignUp from '@/components/SignUp'
-import Confirm from '@/components/Confirm'
 import HelloWorld from '@/components/HelloWorld'
 import About from '@/components/About'
-import Split from '@/components/Split'
 import cognito from '@/cognito'
 
 Vue.use(Router)
@@ -19,7 +17,7 @@ const requireAuth = (to, from, next) => {
     })
     .catch(session => {
       next({
-        path: '/login',
+        path: '/home',
         query: { redirect: to.fullPath }
       })
     })
@@ -27,41 +25,33 @@ const requireAuth = (to, from, next) => {
 
 const logout = (to, from, next) => {
   cognito.logout()
-  next('/login')
+  next('/home')
 }
 
 export default new Router({
   mode: 'history',
   routes: [
     {
+      path: '/home',
+      name: 'Home',
+      component: Home
+    },
+    {
       path: '/',
       component: Index,
+      beforeEnter: requireAuth,
       children: [
         {
-          path: '',
+          path: '/helloWorld',
           name: 'helloWorld',
-          component: HelloWorld
-        },
-        {
-          path: '/home',
-          name: 'Home',
-          component: Home,
+          component: HelloWorld,
           beforeEnter: requireAuth
         },
         {
-          path: '/login',
-          name: 'Login',
-          component: Login
-        },
-        {
-          path: '/singup',
-          name: 'SignUp',
-          component: SignUp
-        },
-        {
-          path: '/confirm',
-          name: 'Confirm',
-          component: Confirm
+          path: 'content',
+          name: 'content',
+          component: Content,
+          beforeEnter: requireAuth
         },
         { path: '/logout',
           beforeEnter: logout
@@ -70,13 +60,13 @@ export default new Router({
           path: '/about',
           name: 'About',
           component: About
-        },
-        {
-          path: '/split',
-          name: 'Split',
-          component: Split
         }
       ]
+    },
+    {
+      path: '*',
+      name: 'ErrorPage',
+      component: ErrorPage
     }
   ]
 })

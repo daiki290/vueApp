@@ -2,13 +2,14 @@
   <div id="index">
     <div class="header">
         <header>
-            <h1>IKEMIZU DAIKI</h1>
+            <h1>VUE HOME PAGE</h1>
             <div>
                 <nav>
                     <ul>
-                        <router-link tag="li" to="/login"><a>ホーム</a></router-link>
-                        <router-link tag="li" to="/login"><a>ログイン</a></router-link>
-                        <router-link tag="li" to="/about"><a>About Us</a></router-link>
+                        <router-link tag="li" to="/helloWorld"><a>ホーム</a></router-link>
+                        <router-link tag="li" to="/vote"><a>投票</a></router-link>
+                        <router-link tag="li" to="/clock"><a>時間</a></router-link>
+                        <router-link tag="li" to="/logout"><a>ログアウト</a></router-link>
                     </ul>
                 </nav>
             </div>
@@ -32,6 +33,18 @@
 @media screen and (min-width: 800px) {
    /* 表示領域が800px以上の場合に適用するスタイル */
    #index { width: 100% }
+}
+
+#index{
+    position: relative;
+    width: 100%;
+    height: auto !important;
+    height: 100%;
+    min-height: 100%;
+}
+
+.main{
+    height:80vh;
 }
 
 header h1{
@@ -83,6 +96,9 @@ nav a:hover{
 }
 
 footer{
+    position: absolute;
+    bottom: 0;
+    height:20px;
     font-size: 80%; /*フォントサイズの指定*/
     width: 100%;    /*横幅の指定*/
     text-align: center; /*文字の中央寄せ*/

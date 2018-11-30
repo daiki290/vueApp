@@ -1,7 +1,7 @@
 <template>
     <div class="split">
         <div class="headText">
-            <h1 class="title">HEAD TITLE</h1>
+            <h1 class="title">WELCOME</h1>
         </div>
         <div id="splitDesign">
             <div class="split-box split-left">
@@ -12,7 +12,7 @@
         <div class="center-logo">
             <Login v-on:parentMessage="setErrorMsg" v-if="type === 'A'"></Login>
             <SignUp v-on:parentMessage="setErrorMsg" v-on:nextStep="changeTypeC" v-else-if="type === 'B'"></SignUp>
-            <Confirm v-on:parentMessage="setErrorMsg" v-else-if="type === 'C'"></Confirm>
+            <Confirm v-on:parentMessage="setErrorMsg" v-on:nextStep="changeTypeA" v-else-if="type === 'C'"></Confirm>
             <div class="buttonArea">
               <button class="btn-border" v-if="type === 'A'" v-on:click="changeTypeC" >INPUT AUTH CODE</button>
               <button class="btn-border" v-if="type === 'A'" v-on:click="changeTypeB">CREATE ACCOUNT</button>
@@ -32,7 +32,7 @@ z-index:2;
 }
 
 .title{
-    font-size:120%; /*フォントサイズの調整*/
+    font-size:150%; /*フォントサイズの調整*/
     color:#313131; /*文字色の変更*/
     padding-top: 10px; /*文字上部に余白*/
     padding-bottom: 10px; /*文字下部に余白*/
@@ -41,7 +41,7 @@ z-index:2;
     border-bottom:1px solid #313131; /*文字の周りに線を描く*/
     border-radius: 5px; /*線の角に丸みを付ける*/
     letter-spacing: 3px; /*文字と文字の間隔をあける*/
-    font-weight:400; /*文字の太さの変更*/
+    font-weight:500; /*文字の太さの変更*/
 }
 
 .split-box{
@@ -67,7 +67,7 @@ position: absolute;
 top: 50%;
 left: 50%;
 width: 40vh;
-height: 50vh;
+height: 40vh;
 margin-top: -20vh;
 margin-left: -20vh;
 text-align: center;
@@ -91,7 +91,8 @@ z-index:3;
   color: #000;
   text-decoration: none;
   font-weight: bold;
-  padding: 8px 16px;
+  padding: 8px 8px;
+  margin: 5px 20px;
   border-radius: 4px;
   transition: .4s;
 }
@@ -123,7 +124,7 @@ export default {
   data () {
     return {
       type: 'A',
-      errorMsg: 'test'
+      errorMsg: ''
     }
   },
   methods: {

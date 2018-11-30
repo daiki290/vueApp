@@ -1,24 +1,27 @@
 <template>
   <div class="container">
-  <p class="title">Login</p>
-  <form @submit.prevent="login">
-    <div class="group">
-      <input type="text" v-model="username" required>
-      <span class="highlight"></span>
-      <span class="bar"></span>
-      <label>Email</label>
-    </div>
-    <div class="group">
-      <input type="password" v-model="password" required>
-      <span class="highlight"></span>
-      <span class="bar"></span>
-      <label>Password</label>
-    </div>
-    <div class="buttonArea">
-      <button class="btn-border login-btn">LOGIN</button><br>
-    </div>
-  </form>
-</div>
+    <p class="title">Login</p>
+    <form @submit.prevent="login">
+      <div class="group">
+        <input type="text" v-model="username" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Email</label>
+      </div>
+      <div class="group">
+        <input type="password" v-model="password" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Password</label>
+      </div>
+      <div class="description">
+        <p>Enter using more than eight capital, <br>small letters and numbers. </p>
+      </div>
+      <div class="buttonArea">
+        <button class="btn-border login-btn">LOGIN</button><br>
+      </div>
+    </form>
+  </div>
 </template>
 <style scoped>
 * { box-sizing:border-box; }
@@ -27,7 +30,7 @@
 
 .container      {
 font-family:'Roboto';
-max-height:80%;
+max-height:90%;
 width:100%;
 margin:10px auto 0;
 display:block;
@@ -35,7 +38,7 @@ padding:5px 25px 25px;
 }
 .title{
 text-align:center;
-margin-bottom:20px;
+margin-bottom:30px;
 font-family: Bodoni serif;
 text-transform: uppercase;
 border-bottom:1px solid #313131; /*文字の周りに線を描く*/
@@ -139,8 +142,9 @@ opacity:0.5;
   transition: .4s;
 }
 
-.login-btn{
-  margin-bottom:10px;
+.description{
+  opacity: 0.7;
+  font-family: Bodoni serif;
 }
 
 .btn-border:hover {

@@ -35,13 +35,14 @@
 .container      {
 font-family:'Roboto';
 width:100%;
+max-height:90%;
 margin:10px auto 0;
 display:block;
 padding:5px 25px 25px;
 }
 .title       {
 text-align:center;
-margin-bottom:20px;
+margin-bottom:30px;
 font-family: Bodoni serif;
 text-transform: uppercase;
 border-bottom:1px solid #313131; /*文字の周りに線を描く*/

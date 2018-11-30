@@ -1,5 +1,5 @@
 <template>
     <div class="Content">
-        ログインに成功しました。
+        <img src='../assets/cat1.png'/>
     </div>
 </template>

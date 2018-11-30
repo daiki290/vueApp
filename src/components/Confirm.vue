@@ -27,7 +27,7 @@
 
 .container      {
 font-family:'Roboto';
-max-height:80%;
+max-height:90%;
 width:100%;
 margin:10px auto 0;
 display:block;
@@ -35,7 +35,7 @@ padding:5px 25px 25px;
 }
 p       {
 text-align:center;
-margin-bottom:20px;
+margin-bottom:30px;
 font-family: Bodoni serif;
 text-transform: uppercase;
 border-bottom:1px solid #313131; /*文字の周りに線を描く*/
@@ -139,10 +139,6 @@ opacity:0.5;
   transition: .4s;
 }
 
-.login-btn{
-  margin-bottom:10px;
-}
-
 .btn-border:hover {
   background-color: #000;
   border-color: #000;
@@ -183,7 +179,7 @@ export default {
     confirm () {
       this.$cognito.confirmation(this.username, this.confirmationCode)
         .then(result => {
-          this.$router.replace('/content')
+          this.$emit('nextStep')
         })
         .catch(err => {
           this.$emit('parentMessage', 'Confirm failed. Try again.')

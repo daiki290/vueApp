@@ -3,9 +3,11 @@ import Router from 'vue-router'
 import Home from '@/pages/Home'
 import Content from '@/pages/Content'
 import ErrorPage from '@/pages/ErrorPage'
-import Index from '@/components/Index'
+import Index from '@/pages/Index'
 import HelloWorld from '@/components/HelloWorld'
 import About from '@/components/About'
+import Clock from '@/components/Clock'
+import Vote from '@/components/Vote'
 import cognito from '@/cognito'
 
 Vue.use(Router)
@@ -44,14 +46,17 @@ export default new Router({
         {
           path: '/helloWorld',
           name: 'helloWorld',
-          component: HelloWorld,
-          beforeEnter: requireAuth
+          component: HelloWorld
         },
         {
-          path: 'content',
+          path: '/content',
           name: 'content',
-          component: Content,
-          beforeEnter: requireAuth
+          component: Content
+        },
+        {
+          path: '/clock',
+          name: 'clock',
+          component: Clock
         },
         { path: '/logout',
           beforeEnter: logout
@@ -60,6 +65,11 @@ export default new Router({
           path: '/about',
           name: 'About',
           component: About
+        },
+        {
+          path: '/vote',
+          name: 'Vote',
+          component: Vote
         }
       ]
     },
